@@ -56,23 +56,7 @@ def LineAngleBelow45Deg():
 '
 '''
 def LineAngleEqual45Deg():
-    global point_count
-    # Начальная точка отрезка
-    start_x = 10
-    start_y = 10
-    canvas.create_point(start_x, start_y, '#FF00FF', line_width=4)
-    # Конечная точка отрезка
-    end_x = 500
-    end_y = 500
-    canvas.create_point(end_x, end_y, '#FF00FF', line_width=4)
-    # Поточечно рисуем отрезок между точками с координатами
-    # (start_x, start_y) и (end_x, end_y)
-    for delta_x in range(end_x - start_x):
-        current_x = start_x + delta_x
-        current_y = start_y + (end_y - start_y) * (current_x - start_x) / (end_x - start_x)
-        canvas.create_point(current_x, round(current_y), '#FF00FF')
-        point_count += 1
-    lbl_point_num.configure(text=str(point_count))
+    pass
 
 
 '''
@@ -100,10 +84,10 @@ def LineAngleAbove45Deg():
     # Поточечно рисуем отрезок между точками с координатами
     # (start_x, start_y) и (end_x, end_y)
     # Здесь цикл идёт по Y, потому что угол > 45°
-    for delta_y in range(end_y - start_y):
-        current_y = start_y + delta_y
-        current_x = start_x + (end_x - start_x) * (current_y - start_y) / (end_y - start_y)
-        canvas.create_point(round(current_x), current_y, '#FF00FF')
+    for delta_x in range(end_x - start_x):
+        current_x = start_x + delta_x
+        current_y = start_y + (end_y - start_y) * (current_x - start_x) / (end_x - start_x)
+        canvas.create_point(current_x, round(current_y), "#F700FF")
         point_count += 1
     lbl_point_num.configure(text=str(point_count))
 
@@ -117,11 +101,7 @@ def LineAngleAbove45Deg():
 '''
 def PointCircle():
     global point_count
-    radius = 100
-    for x in range(radius + 1):
-        y = (radius ** 2 - x ** 2) ** 0.5
-        canvas.create_point(x, y, '#FF0000')
-        point_count += 1
+
     lbl_point_num.configure(text=str(point_count))
 
 
@@ -135,19 +115,7 @@ def PointCircle():
 '''
 def PointMidCircle():
     global point_count
-    center_x = 400
-    center_y = 300
-    radius = 100
-    # Проходим по X от (center_x - radius) до (center_x + radius)
-    for offset_x in range(2 * radius + 1):
-        current_x = (center_x - radius) + offset_x
-        # Верхняя полуокружность
-        current_y = center_y - (radius ** 2 - (current_x - center_x) ** 2) ** 0.5
-        canvas.create_point(current_x, current_y, '#000000')
-        # Нижняя полуокружность
-        current_y = center_y + (radius ** 2 - (current_x - center_x) ** 2) ** 0.5
-        canvas.create_point(current_x, current_y, '#FF0000')
-        point_count += 2
+
     lbl_point_num.configure(text=str(point_count))
 
 
